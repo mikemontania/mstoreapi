@@ -6,6 +6,7 @@ const { sequelize } = require('../dbconfig');
 const moment = require('moment');
 
 const Etiqueta = sequelize.define('Etiqueta', {
+    id: { type: DataTypes.INTEGER, autoIncrement: true, primaryKey: true, },
     titulo: { type: DataTypes.STRING, allowNull: false, },
     slug: { type: DataTypes.STRING, allowNull: false, },
     createdAt: { type: DataTypes.DATE, allowNull: true, default: Date.now },

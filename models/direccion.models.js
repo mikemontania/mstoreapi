@@ -3,6 +3,7 @@ const { sequelize } = require('../dbconfig');
 const Cliente = require('./cliente.models'); // Asegúrate de que el nombre del archivo sea correcto
 
 const Direccion = sequelize.define('Direccion', {
+    id: { type: DataTypes.INTEGER, autoIncrement: true, primaryKey: true, },
     nombres: { type: DataTypes.STRING, allowNull: false },
     apellidos: { type: DataTypes.STRING, allowNull: false },
     dni: { type: DataTypes.STRING, allowNull: false },

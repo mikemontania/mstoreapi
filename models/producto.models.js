@@ -4,6 +4,7 @@ const { sequelize } = require('../dbconfig');
 const moment = require('moment');
 
 const Producto = sequelize.define('Producto', {
+    id: { type: DataTypes.INTEGER, autoIncrement: true, primaryKey: true, },
     titulo: { type: DataTypes.STRING, allowNull: false, },
     slug: { type: DataTypes.STRING, allowNull: false, },
     portada: { type: DataTypes.STRING, allowNull: false, },

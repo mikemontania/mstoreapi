@@ -2,6 +2,7 @@ const { DataTypes } = require('sequelize');
 const { sequelize } = require('../dbconfig');
 
 const Contacto = sequelize.define('Contacto', {
+    id: { type: DataTypes.INTEGER, autoIncrement: true, primaryKey: true, },
     cliente: { type: DataTypes.STRING, allowNull: false },
     mensaje: { type: DataTypes.STRING, allowNull: false },
     asunto: { type: DataTypes.STRING, allowNull: false },

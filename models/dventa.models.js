@@ -6,6 +6,7 @@ const Variedad = require('./variedad.models'); // Asegúrate de que el nombre de
 const Cliente = require('./cliente.models'); // Asegúrate de que el nombre del archivo sea correcto
 
 const Dventa = sequelize.define('Dventa', {
+    id: { type: DataTypes.INTEGER, autoIncrement: true, primaryKey: true, },
     subtotal: { type: DataTypes.INTEGER, allowNull: false },
     cantidad: { type: DataTypes.INTEGER, allowNull: false },
     createdAt: { type: DataTypes.DATE, allowNull: true, defaultValue: DataTypes.NOW },

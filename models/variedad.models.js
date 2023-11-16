@@ -5,6 +5,7 @@ const { sequelize } = require('../dbconfig');
 const Producto = require('./producto.models'); // Asegúrate de que el nombre del archivo sea correcto
 
 const Variedad = sequelize.define('Variedad', {
+    id: { type: DataTypes.INTEGER, autoIncrement: true, primaryKey: true, },
     valor: { type: DataTypes.STRING, allowNull: false },
     stock: { type: DataTypes.STRING, allowNull: false, defaultValue: '0' },
     createdAt: { type: DataTypes.DATE, allowNull: true, defaultValue: DataTypes.NOW },

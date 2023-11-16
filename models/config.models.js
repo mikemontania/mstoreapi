@@ -2,6 +2,7 @@ const { DataTypes } = require('sequelize');
 const { sequelize } = require('../dbconfig');
 
 const Config = sequelize.define('Config', {
+    id: { type: DataTypes.INTEGER, autoIncrement: true, primaryKey: true, },
     envioActivacion: { type: DataTypes.STRING, allowNull: false },
     montoMinSoles: { type: DataTypes.INTEGER, allowNull: false },
     montoMinDolares: { type: DataTypes.INTEGER, allowNull: false },

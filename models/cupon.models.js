@@ -2,6 +2,7 @@ const { DataTypes } = require('sequelize');
 const { sequelize } = require('../dbconfig');
 
 const Cupon = sequelize.define('Cupon', {
+    id: { type: DataTypes.INTEGER, autoIncrement: true, primaryKey: true, },
     codigo: { type: DataTypes.STRING, allowNull: false },
     disponibilidad: { type: DataTypes.STRING, allowNull: false },
     valor: { type: DataTypes.INTEGER, allowNull: false },

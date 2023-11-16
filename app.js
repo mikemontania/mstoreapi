@@ -12,7 +12,7 @@ const dbSetup = async () => {
     //crea conexion
     await dbConnection();
     //inserta registros
-    //  await populateDB();
+      await populateDB();
 }
 dbSetup();
 

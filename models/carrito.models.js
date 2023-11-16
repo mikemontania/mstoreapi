@@ -5,6 +5,7 @@ const Cliente = require('./cliente.models'); // Asegúrate de que el nombre del 
 const Variedad = require('./variedad.models'); // Asegúrate de que el nombre del archivo sea correcto
 
 const Carrito = sequelize.define('Carrito', {
+  id: { type: DataTypes.INTEGER, autoIncrement: true, primaryKey: true, },
   cantidad: { type: DataTypes.INTEGER, allowNull: false },
   createdAt: { type: DataTypes.DATE, allowNull: true, defaultValue: DataTypes.NOW },
 }, {

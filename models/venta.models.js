@@ -4,6 +4,7 @@ const Cliente = require('./cliente.models'); // Asegúrate de que el nombre del 
 const Direccion = require('./direccion.models'); // Asegúrate de que el nombre del archivo sea correcto
 
 const Venta = sequelize.define('Venta', {
+    id: { type: DataTypes.INTEGER, autoIncrement: true, primaryKey: true, },
     subtotal: { type: DataTypes.INTEGER, allowNull: false },
     totalPagar: { type: DataTypes.INTEGER, allowNull: false },
     currency: { type: DataTypes.STRING, allowNull: false },

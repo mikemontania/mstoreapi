@@ -5,6 +5,7 @@ const Cliente = require('./cliente.models'); // Asegúrate de que el nombre del 
 const Venta = require('./venta.models'); // Asegúrate de que el nombre del archivo sea correcto
 
 const Review = sequelize.define('Review', {
+    id: { type: DataTypes.INTEGER, autoIncrement: true, primaryKey: true, },
     review: { type: DataTypes.STRING, allowNull: false },
     estrellas: { type: DataTypes.INTEGER, allowNull: false },
     createdAt: { type: DataTypes.DATE, allowNull: true, defaultValue: DataTypes.NOW },

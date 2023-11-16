@@ -3,6 +3,7 @@ const { sequelize } = require('../dbconfig');
 const moment = require('moment');
 
 const Cliente = sequelize.define('Cliente', {
+    id: { type: DataTypes.INTEGER, autoIncrement: true, primaryKey: true, },
     dni: { type: DataTypes.STRING, allowNull: false, },
     nombres: { type: DataTypes.STRING, allowNull: false, },
     apellidos: { type: DataTypes.STRING, allowNull: false, },

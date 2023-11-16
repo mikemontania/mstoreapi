@@ -3,7 +3,7 @@ const { sequelize } = require('../dbconfig');
 const moment = require('moment');
 
 const Admin = sequelize.define('Admin', {
-
+    id: { type: DataTypes.INTEGER, autoIncrement: true, primaryKey: true, },
     nombres: { type: DataTypes.STRING, allowNull: false, },
     apellidos: { type: DataTypes.STRING, allowNull: false, },
     email: { type: DataTypes.STRING, allowNull: false, },
