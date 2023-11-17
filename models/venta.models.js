@@ -6,7 +6,7 @@ const Direccion = require('./direccion.models'); // Asegúrate de que el nombre 
 const Venta = sequelize.define('Venta', {
     id: { type: DataTypes.INTEGER, autoIncrement: true, primaryKey: true, },
     subtotal: { type: DataTypes.INTEGER, allowNull: false },
-    totalPagar: { type: DataTypes.INTEGER, allowNull: false },
+    totalPagar: { type: DataTypes.NUMERIC, allowNull: false },
     currency: { type: DataTypes.STRING, allowNull: false },
     tracking: { type: DataTypes.STRING, allowNull: false, defaultValue: '' },
     envioPrecio: { type: DataTypes.INTEGER, allowNull: false },

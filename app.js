@@ -12,7 +12,7 @@ const dbSetup = async () => {
     //crea conexion
     await dbConnection();
     //inserta registros
-      await populateDB();
+    await populateDB();
 }
 dbSetup();
 
@@ -23,7 +23,7 @@ const io = require('socket.io')(server, {
     cors: { origin: '*' }
 });
 
-io.on('connection', function (socket) {
+io.on('connection', (socket) => {
     socket.on('delete-carrito', function (data) {
         io.emit('new-carrito', data);
         console.log(data);
@@ -54,7 +54,7 @@ app.use('/api', admin_routes);
 app.use('/api', cupon_routes);
 
 
-app.listen(process.env.PORT, () => {
+server.listen(process.env.PORT, () => {
     console.log('Servidor corriendo en puerto ' + process.env.PORT);
 });
 

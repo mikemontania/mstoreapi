@@ -9,7 +9,7 @@ const Producto = sequelize.define('Producto', {
     slug: { type: DataTypes.STRING, allowNull: false, },
     portada: { type: DataTypes.STRING, allowNull: false, },
     precio: { type: DataTypes.NUMERIC, allowNull: true, default: 0 },
-    precioAntesDolares: { type: DataTypes.NUMERIC, allowNull: true, default: 0 },
+    // precioAntesDolares: { type: DataTypes.NUMERIC, allowNull: true, default: 0 },
     sku: { type: DataTypes.STRING, allowNull: false, },
     descripcion: { type: DataTypes.STRING, allowNull: false, },
     contenido: { type: DataTypes.STRING, allowNull: false, },

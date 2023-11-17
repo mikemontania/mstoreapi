@@ -5,7 +5,7 @@ const Variedad = require('../models/variedad.models');
 const Venta = require('../models/venta.models');
 const Dventa = require('../models/dventa.models');
 const Config = require('../models/config.models');
-const Contacto = require('../models/contacto.models');
+const Inventario = require('../models/inventario.models');
 const Etiqueta = require('../models/etiqueta.models');
 const Direccion = require('../models/direccion.models');
 const ProductoEtiqueta = require('../models/productoEtiqueta.models');
@@ -134,6 +134,10 @@ const registroProductoAdmin = async (req, res) => {
 
             if (arrEtiquetas.length >= 1) {
                 for (const item of arrEtiquetas) {
+                    console.log({
+                        etiquetaId: +item.id,
+                        productoId: reg.id,
+                    })
                     await ProductoEtiqueta.create({
                         etiquetaId: +item.id,
                         productoId: reg.id,
@@ -149,7 +153,60 @@ const registroProductoAdmin = async (req, res) => {
         res.status(500).send({ message: 'NoAccess' });
     }
 }
+const actualizarProductoAdmin = async (req, res) => {
 
+    if (req.user) {
+        const id = req.params['id'];
+        const data = req.body;
+        console.log(data)
+        try {
+            let reg;
+            if (req.files) {
+                // SI HAY IMAGEN
+                const imgPath = req.files.portada.path;
+                const img = req.files.portada;
+                console.log(req.files.portada)
+                const name = imgPath.split('\\');
+                const portadaName = name[2];
+                console.log(portadaName)
+                reg = await Producto.update({
+                    ...data,
+                    portada: portadaName
+                }, {
+                    where: { id },
+                    returning: true
+                });
+
+                fs.stat('./uploads/productos/' + reg.portada, (err) => {
+                    if (!err) {
+                        fs.unlink('./uploads/productos/' + reg.portada, (err) => {
+                            if (err) {
+                                console.error(err);
+                                throw err;
+                            }
+                        });
+                    }
+                });
+
+            } else {
+                // NO HAY IMAGEN
+                reg = await Producto.update({
+                    ...data
+                }, {
+                    where: { id },
+                    returning: true
+                });
+            }
+
+            res.status(200).send({ data: reg[1][0] });
+        } catch (error) {
+            console.error(error);
+            res.status(500).send({ message: 'Error interno del servidor' });
+        }
+    } else {
+        res.status(500).send({ message: 'NoAccess' });
+    }
+}
 const listarProductosAdmin = async (req, res) => {
     if (req.user) {
         const productos = await Producto.findAll();
@@ -228,75 +285,7 @@ const obtenerPortada = async (req, res) => {
         }
     })
 }
-const actualizarProductoAdmin = async (req, res) => {
-    if (req.user) {
-        const id = req.params['id'];
-        const data = req.body;
 
-        try {
-            let reg;
-            if (req.files) {
-                // SI HAY IMAGEN
-                const imgPath = req.files.portada.path;
-                const name = imgPath.split('\\');
-                const portadaName = name[2];
-
-                reg = await Producto.update({
-                    titulo: data.titulo,
-                    stock: data.stock,
-                    precio: data.precio,
-                    precio: data.precio,
-                    precio: data.precio,
-                    precioDolar: data.precio_dolar,
-                    peso: data.peso,
-                    sku: data.sku,
-                    categoria: data.categoria,
-                    visibilidad: data.visibilidad,
-                    descripcion: data.descripcion,
-                    contenido: data.contenido,
-                    portada: portadaName
-                }, {
-                    where: { id },
-                    returning: true
-                });
-
-                fs.stat('./uploads/productos/' + reg[1][0].portada, function (err) {
-                    if (!err) {
-                        fs.unlink('./uploads/productos/' + reg[1][0].portada, (err) => {
-                            if (err) throw err;
-                        });
-                    }
-                });
-            } else {
-                // NO HAY IMAGEN
-                reg = await Producto.update({
-                    titulo: data.titulo,
-                    stock: data.stock,
-                    precio: data.precio,
-                    precioAntesDolares: data.precioAntesDolares,
-                    precio: data.precio,
-                    precioDolar: data.precio_dolar,
-                    peso: data.peso,
-                    sku: data.sku,
-                    categoria: data.categoria,
-                    visibilidad: data.visibilidad,
-                    descripcion: data.descripcion,
-                    contenido: data.contenido,
-                }, {
-                    where: { id },
-                    returning: true
-                });
-            }
-
-            res.status(200).send({ data: reg[1][0] });
-        } catch (error) {
-            console.error(error);
-            res.status(500).send({ message: 'Error interno del servidor' });
-        }
-    } else {
-        res.status(500).send({ message: 'NoAccess' });
-    }
-}
 
 const listarVariedadesAdmin = async (req, res) => {
     if (req.user) {

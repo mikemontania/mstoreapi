@@ -7,7 +7,7 @@ const Cliente = require('./cliente.models'); // Asegúrate de que el nombre del 
 
 const Dventa = sequelize.define('Dventa', {
     id: { type: DataTypes.INTEGER, autoIncrement: true, primaryKey: true, },
-    subtotal: { type: DataTypes.INTEGER, allowNull: false },
+    subtotal: { type: DataTypes.NUMERIC, allowNull: false },
     cantidad: { type: DataTypes.INTEGER, allowNull: false },
     createdAt: { type: DataTypes.DATE, allowNull: true, defaultValue: DataTypes.NOW },
 }, {

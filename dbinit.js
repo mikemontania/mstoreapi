@@ -2,8 +2,8 @@
 const bcrypt = require('bcrypt-nodejs');
 const Admin = require('./models/admin.models');
 const Cliente = require('./models/cliente.models');
-const  Producto  = require('./models/producto.models');
-const  Etiqueta  = require('./models/etiqueta.models');
+const Producto = require('./models/producto.models');
+const Etiqueta = require('./models/etiqueta.models');
 const populateDB = async () => {
     console.log('populateDB')
     if (process.env.DB_INIT == 'true') {
@@ -51,7 +51,30 @@ const populateDB = async () => {
             email: 'cliente3@example.com',
             password: bcrypt.hashSync('123456')
         })
-        
+
+
+        const etiqueta1 = await Etiqueta.create({
+            titulo: '#LIMPIEZADELHOGAR',
+            slug: 'limpiezadelhogar'
+        })
+        const etiqueta2 = await Etiqueta.create({
+            titulo: '#CUIDADODEPRENDAS',
+            slug: 'cuidadodeprendas'
+        })
+
+        const etiqueta3 = await Etiqueta.create({
+            titulo: '#HIGIENEPERSONAL',
+            slug: 'higienepersonal'
+        })
+
+
+
+
+
+
+
+
+
         for (const productoData of productosData) {
             console.log(productoData);
             await Producto.create(productoData);
@@ -71,10 +94,10 @@ const productosData = [
         descripcion: 'LIMPIADOR900MLAMARILLO',
         peso: '0.5',
         precio: 12000,
-        precio_dolar: 1.6438356164,
+        //precioAntesDolares: 1.6438356164,
         portada: 'perfil.png',
         categoria: 6,
-        visibilidad: 'Todo el mundo',
+        visibilidad: 'Todo el mundo', stock: 0,
         contenido: '<p>dasdasdas</p><p>asdas</p>'
     },
     {
@@ -84,10 +107,10 @@ const productosData = [
         descripcion: 'LIMPIADOR900MLLILA',
         peso: '0.5',
         precio: 12000,
-        precio_dolar: 1.6438356164,
+        //precioAntesDolares: 1.6438356164,
         portada: 'perfil.png',
         categoria: 6,
-        visibilidad: 'Todo el mundo',
+        visibilidad: 'Todo el mundo', stock: 0,
         contenido: '<p>dasdasdas</p><p>asdas</p>'
     },
     {
@@ -97,10 +120,10 @@ const productosData = [
         descripcion: 'LIMPIADOR900MLROSA',
         peso: '0.5',
         precio: 12000,
-        precio_dolar: 1.6438356164,
+        //precioAntesDolares: 1.6438356164,
         portada: 'perfil.png',
         categoria: 6,
-        visibilidad: 'Todo el mundo',
+        visibilidad: 'Todo el mundo', stock: 0,
         contenido: '<p>dasdasdas</p><p>asdas</p>'
     },
     {
@@ -110,10 +133,10 @@ const productosData = [
         descripcion: 'LIMPIADOR900MLVERDE',
         peso: '0.5',
         precio: 12000,
-        precio_dolar: 1.6438356164,
+        //precioAntesDolares: 1.6438356164,
         portada: 'perfil.png',
         categoria: 6,
-        visibilidad: 'Todo el mundo',
+        visibilidad: 'Todo el mundo', stock: 0,
         contenido: '<p>dasdasdas</p><p>asdas</p>'
     },
     {
@@ -123,10 +146,10 @@ const productosData = [
         descripcion: 'PACK PROMO DESOD. FANTASIA 900ML + 500 ML VARIOS',
         peso: '1.4',
         precio: 14700,
-        precio_dolar: 2.0136986301,
+        //precioAntesDolares: 2.0136986301,
         portada: 'perfil.png',
         categoria: 6,
-        visibilidad: 'Todo el mundo',
+        visibilidad: 'Todo el mundo', stock: 0,
         contenido: '<p>dasdasdas</p><p>asdas</p>'
     },
     {
@@ -136,10 +159,10 @@ const productosData = [
         descripcion: 'PACK PROMO DESOD. UVA 900ML + 500 ML VARIOS',
         peso: '1.4',
         precio: 14700,
-        precio_dolar: 2.0136986301,
+        //precioAntesDolares: 2.0136986301,
         portada: 'perfil.png',
         categoria: 6,
-        visibilidad: 'Todo el mundo',
+        visibilidad: 'Todo el mundo', stock: 0,
         contenido: '<p>dasdasdas</p><p>asdas</p>'
     },
     {
@@ -149,10 +172,10 @@ const productosData = [
         descripcion: 'PACK PROMO DESOD. MARINA 900ML + 500 ML VARIOS',
         peso: '1.4',
         precio: 14700,
-        precio_dolar: 2.0136986301,
+        //precioAntesDolares: 2.0136986301,
         portada: 'perfil.png',
         categoria: 6,
-        visibilidad: 'Todo el mundo',
+        visibilidad: 'Todo el mundo', stock: 0,
         contenido: '<p>dasdasdas</p><p>asdas</p>'
     },
     {
@@ -162,10 +185,10 @@ const productosData = [
         descripcion: 'DETERGENTES500MLVERDE',
         peso: '0.5',
         precio: 7500,
-        precio_dolar: 1.0273972603,
+        //precioAntesDolares: 1.0273972603,
         portada: 'perfil.png',
         categoria: 6,
-        visibilidad: 'Todo el mundo',
+        visibilidad: 'Todo el mundo', stock: 0,
         contenido: '<p>dasdasdas</p><p>asdas</p>'
     },
     {
@@ -175,10 +198,10 @@ const productosData = [
         descripcion: 'JABÓN EN POLVO2KGAZUL Y BLANCO',
         peso: '2',
         precio: 45000,
-        precio_dolar: 6.1643835616,
+        //precioAntesDolares: 6.1643835616,
         portada: 'perfil.png',
         categoria: 6,
-        visibilidad: 'Todo el mundo',
+        visibilidad: 'Todo el mundo', stock: 0,
         contenido: '<p>dasdasdas</p><p>asdas</p>'
     },
     {
@@ -188,10 +211,10 @@ const productosData = [
         descripcion: 'JABON150GRSVERDE',
         peso: '3',
         precio: 58750,
-        precio_dolar: 8.0479452055,
+        //precioAntesDolares: 8.0479452055,
         portada: 'perfil.png',
         categoria: 6,
-        visibilidad: 'Todo el mundo',
+        visibilidad: 'Todo el mundo', stock: 0,
         contenido: '<p>dasdasdas</p><p>asdas</p>'
     },
     {
@@ -201,10 +224,10 @@ const productosData = [
         descripcion: 'JABON DE TOCADOR90GROZA',
         peso: '0.27',
         precio: 11800,
-        precio_dolar: 1.6164383562,
+        //precioAntesDolares: 1.6164383562,
         portada: 'perfil.png',
         categoria: 6,
-        visibilidad: 'Todo el mundo',
+        visibilidad: 'Todo el mundo', stock: 0,
         contenido: '<p>dasdasdas</p><p>asdas</p>'
     },
     {
@@ -214,10 +237,10 @@ const productosData = [
         descripcion: 'JABON DE TOCADOR90GCELESTE',
         peso: '0.27',
         precio: 11800,
-        precio_dolar: 1.6164383562,
+        //precioAntesDolares: 1.6164383562,
         portada: 'perfil.png',
         categoria: 6,
-        visibilidad: 'Todo el mundo',
+        visibilidad: 'Todo el mundo', stock: 0,
         contenido: '<p>dasdasdas</p><p>asdas</p>'
     },
     {
@@ -227,10 +250,10 @@ const productosData = [
         descripcion: 'JABON DE TOCADOR90GVERDE',
         peso: '0.27',
         precio: 11800,
-        precio_dolar: 1.6164383562,
+        //precioAntesDolares: 1.6164383562,
         portada: 'perfil.png',
         categoria: 6,
-        visibilidad: 'Todo el mundo',
+        visibilidad: 'Todo el mundo', stock: 0,
         contenido: '<p>dasdasdas</p><p>asdas</p>'
     },
     {
@@ -240,10 +263,10 @@ const productosData = [
         descripcion: 'JABON150grsMARRON',
         peso: '3',
         precio: 58750,
-        precio_dolar: 8.0479452055,
+        //precioAntesDolares: 8.0479452055,
         portada: 'perfil.png',
         categoria: 6,
-        visibilidad: 'Todo el mundo',
+        visibilidad: 'Todo el mundo', stock: 0,
         contenido: '<p>dasdasdas</p><p>asdas</p>'
     },
     {
@@ -253,10 +276,10 @@ const productosData = [
         descripcion: 'JABÓN DE TOCADOR90gNARANJA',
         peso: '0.09',
         precio: 3800,
-        precio_dolar: 0.5205479452,
+        //precioAntesDolares: 0.5205479452,
         portada: 'perfil.png',
         categoria: 6,
-        visibilidad: 'Todo el mundo',
+        visibilidad: 'Todo el mundo', stock: 0,
         contenido: '<p>dasdasdas</p><p>asdas</p>'
     },
 ];

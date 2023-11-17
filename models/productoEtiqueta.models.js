@@ -6,14 +6,8 @@ const ProductoEtiqueta = sequelize.define('ProductoEtiqueta', {
     id: { type: DataTypes.INTEGER, autoIncrement: true, primaryKey: true, },
     // No es necesario definir un ID para las tablas intermedias
     createdAt: { type: DataTypes.DATE, allowNull: true, defaultValue: DataTypes.NOW },
-    productoId: {
-        type: DataTypes.INTEGER,
-        allowNull: true,
-    },
-    etiquetaId: {
-        type: DataTypes.INTEGER,
-        allowNull: true,
-    },
+    productoId: { type: DataTypes.INTEGER, allowNull: true, },
+    etiquetaId: { type: DataTypes.INTEGER, allowNull: true, },
 }, {
     tableName: 'productos_etiquetas',
     timestamps: true,
